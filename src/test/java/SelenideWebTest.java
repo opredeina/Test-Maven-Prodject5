@@ -1,10 +1,13 @@
 import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.Selenide.switchTo;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.selector.ByAttribute;
@@ -22,7 +25,7 @@ public class SelenideWebTest {
     //кликнуть по банеру
     $("div.home-banner").$("a").click();
     // проверка
-    SelenideElement element = $(By.name("Tools QA"));
+    $(".col-auto").shouldHave(text("Home"));
 
   }
 
@@ -32,8 +35,8 @@ public class SelenideWebTest {
     open("https://www.toolsqa.com/selenium-training/");
     //кликнуть по кнопке
     $("a.navbar__tutorial-menu").click();
-    //проверка
-    SelenideElement element = $(By.name("Tools QA"));
+    //проверка видимости элемента
+    $(".first-generation").shouldBe(visible);
 
   }
 
@@ -43,8 +46,8 @@ public class SelenideWebTest {
     open("https://www.toolsqa.com/selenium-training/");
     //клик по тексту
     $(byAttribute("href", "/about")).click();
-    //проверка
-    SelenideElement element = $(By.name("Tools QA | About Us"));
+    //проверка: есть текст Lakshay Sharma
+    $(".card").shouldHave(text("Lakshay Sharma"));
 
   }
 
@@ -54,8 +57,8 @@ public class SelenideWebTest {
     open("https://www.toolsqa.com/about");
     //возврат на предыдущую страницу
     open("https://demoqa.com/");
-    //проверка
-    SelenideElement element = $(By.name("DEMOQA"));
+    //проверка видимости элемента
+    $(".home-banner").shouldBe(visible);
 
   }
 }

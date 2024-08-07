@@ -1,3 +1,4 @@
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -27,7 +28,8 @@ public class Registration {
     $("[id='currentAddress']").setValue("Галкино");
     //кликнуть по кнопке
     $("[type='submit']").click();
-    SelenideElement element = $(By.name("Thanks for submitting the form"));
+    //проверка: во всплывающем окне есть текст Thanks for submitting the form
+    $(".modal-header").shouldHave(text("Thanks for submitting the form"));
 
   }
 }
